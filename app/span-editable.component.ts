@@ -7,12 +7,12 @@ import {Component}         from 'angular2/core';
 		<span (click)="EditarValor()">{{valor}}</span>
 	</div>
 	<div *ng-if!="editable">
-		<input #textobox (blur)="onFocusOut(textobox.value) >{{valor}}</input>
+		<input #textobox (blur)="onFocusOut(textobox.value) [(ngModel)]="hero.name" />
 	</div>
     `
   ]
 })
-export class SpanEditable implements AfterViewChecked {
+export class SpanEditable implements OnInit, AfterViewChecked {
 	public editable: bool = false;
 	public valor: string = '';
 
@@ -25,6 +25,13 @@ export class SpanEditable implements AfterViewChecked {
 	{
 		this.valor = valor;
 	}
+	
+	ngOnInit() {
+	    if (!this.hero) {
+	      let id = +this._routeParams.get('id');
+	      this._heroService.getHero(id).then(hero => this.hero = hero);
+	    }
+	  }
 	
 	ngAfterViewChecked()
 	{

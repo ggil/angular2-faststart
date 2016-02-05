@@ -1,0 +1,243 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.3.10
+-- Dumped by pg_dump version 9.3.10
+-- Started on 2016-02-05 17:08:11 VET
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 1987 (class 1262 OID 16395)
+-- Name: retencion; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE retencion WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_US.UTF-8' LC_CTYPE = 'en_US.UTF-8';
+
+
+ALTER DATABASE retencion OWNER TO postgres;
+
+\connect retencion
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 174 (class 3079 OID 11787)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 1990 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 173 (class 1259 OID 16406)
+-- Name: Tasks; Type: TABLE; Schema: public; Owner: gctadmin; Tablespace: 
+--
+
+CREATE TABLE "Tasks" (
+    id integer NOT NULL,
+    "UserId" integer NOT NULL,
+    title character varying(200) NOT NULL,
+    "createdAt" timestamp without time zone,
+    "updatedAt" timestamp without time zone
+);
+
+
+ALTER TABLE public."Tasks" OWNER TO gctadmin;
+
+--
+-- TOC entry 172 (class 1259 OID 16404)
+-- Name: Task_id_seq; Type: SEQUENCE; Schema: public; Owner: gctadmin
+--
+
+CREATE SEQUENCE "Task_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Task_id_seq" OWNER TO gctadmin;
+
+--
+-- TOC entry 1991 (class 0 OID 0)
+-- Dependencies: 172
+-- Name: Task_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gctadmin
+--
+
+ALTER SEQUENCE "Task_id_seq" OWNED BY "Tasks".id;
+
+
+--
+-- TOC entry 171 (class 1259 OID 16398)
+-- Name: Users; Type: TABLE; Schema: public; Owner: gctadmin; Tablespace: 
+--
+
+CREATE TABLE "Users" (
+    id integer NOT NULL,
+    username character varying(30),
+    "createdAt" timestamp without time zone,
+    "updatedAt" timestamp without time zone
+);
+
+
+ALTER TABLE public."Users" OWNER TO gctadmin;
+
+--
+-- TOC entry 170 (class 1259 OID 16396)
+-- Name: User_id_seq; Type: SEQUENCE; Schema: public; Owner: gctadmin
+--
+
+CREATE SEQUENCE "User_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."User_id_seq" OWNER TO gctadmin;
+
+--
+-- TOC entry 1992 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: User_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gctadmin
+--
+
+ALTER SEQUENCE "User_id_seq" OWNED BY "Users".id;
+
+
+--
+-- TOC entry 1866 (class 2604 OID 16409)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: gctadmin
+--
+
+ALTER TABLE ONLY "Tasks" ALTER COLUMN id SET DEFAULT nextval('"Task_id_seq"'::regclass);
+
+
+--
+-- TOC entry 1865 (class 2604 OID 16401)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: gctadmin
+--
+
+ALTER TABLE ONLY "Users" ALTER COLUMN id SET DEFAULT nextval('"User_id_seq"'::regclass);
+
+
+--
+-- TOC entry 1993 (class 0 OID 0)
+-- Dependencies: 172
+-- Name: Task_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gctadmin
+--
+
+SELECT pg_catalog.setval('"Task_id_seq"', 4, true);
+
+
+--
+-- TOC entry 1982 (class 0 OID 16406)
+-- Dependencies: 173
+-- Data for Name: Tasks; Type: TABLE DATA; Schema: public; Owner: gctadmin
+--
+
+COPY "Tasks" (id, "UserId", title, "createdAt", "updatedAt") FROM stdin;
+\.
+
+
+--
+-- TOC entry 1994 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: User_id_seq; Type: SEQUENCE SET; Schema: public; Owner: gctadmin
+--
+
+SELECT pg_catalog.setval('"User_id_seq"', 52, true);
+
+
+--
+-- TOC entry 1980 (class 0 OID 16398)
+-- Dependencies: 171
+-- Data for Name: Users; Type: TABLE DATA; Schema: public; Owner: gctadmin
+--
+
+COPY "Users" (id, username, "createdAt", "updatedAt") FROM stdin;
+39	Luis	2016-02-05 19:11:59.976	2016-02-05 19:11:59.976
+41	Gustavo	2016-02-05 19:12:45.18	2016-02-05 19:12:45.18
+46	norwis	2016-02-05 19:19:05.98	2016-02-05 19:19:05.98
+47	veronica	2016-02-05 19:19:15.676	2016-02-05 19:19:15.676
+48	elias	2016-02-05 19:19:41.473	2016-02-05 19:19:41.473
+49	Patilla	2016-02-05 19:31:34.324	2016-02-05 19:31:34.324
+50	Gil	2016-02-05 19:32:31.261	2016-02-05 19:32:31.261
+52	adrian	2016-02-05 20:09:58.815	2016-02-05 20:09:58.815
+\.
+
+
+--
+-- TOC entry 1870 (class 2606 OID 16411)
+-- Name: PK_Tasks; Type: CONSTRAINT; Schema: public; Owner: gctadmin; Tablespace: 
+--
+
+ALTER TABLE ONLY "Tasks"
+    ADD CONSTRAINT "PK_Tasks" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1868 (class 2606 OID 16403)
+-- Name: PK_user; Type: CONSTRAINT; Schema: public; Owner: gctadmin; Tablespace: 
+--
+
+ALTER TABLE ONLY "Users"
+    ADD CONSTRAINT "PK_user" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1871 (class 2606 OID 16412)
+-- Name: FK_Users_Tasks; Type: FK CONSTRAINT; Schema: public; Owner: gctadmin
+--
+
+ALTER TABLE ONLY "Tasks"
+    ADD CONSTRAINT "FK_Users_Tasks" FOREIGN KEY ("UserId") REFERENCES "Users"(id);
+
+
+--
+-- TOC entry 1989 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2016-02-05 17:08:11 VET
+
+--
+-- PostgreSQL database dump complete
+--
+

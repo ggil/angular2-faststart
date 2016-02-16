@@ -3,6 +3,7 @@ import {HTTP_PROVIDERS, Http, Request, RequestMethod} from 'angular2/http';
 import {AfterViewChecked} from 'angular2/core';
 import {Usr} from './usuario';
 import {UsuarioService} from './usuario.service';
+import {SpanEditableComponent} from './span-editable.component';
 
 @Component({
     selector: 'usuario',
@@ -32,7 +33,7 @@ import {UsuarioService} from './usuario.service';
 		<tbody>
 			<tr *ngFor="#user of usuarios">
 				<td>{{user.id}}</td>
-				<td>{{user.username}}</td>
+				<td><span-editable [usuario_e]="user" (saved)="onSaved($event)"></span-editable><br /></td>
 				<td>{{user.createdAt}}</td>
 				<td>{{user.updatedAt}}</td>
 				<td>
@@ -44,7 +45,8 @@ import {UsuarioService} from './usuario.service';
 	<br/>
 	<br/>
 	
-		`
+		`,
+	directives: [SpanEditableComponent]
 })
 
 export class UsuarioComponent implements AfterViewChecked, OnInit {
@@ -91,6 +93,24 @@ export class UsuarioComponent implements AfterViewChecked, OnInit {
                      .subscribe(
                        usuario  => this.usuarios = usuario,
                        error =>  this.errorMessage = <any>error);
+	}
+	
+	actualizarUsuario(usuario:Usr)
+	{
+		if (!usuario)
+		{
+			return;
+		}
+		
+		this._usuarioService.updUser(usuario)
+                     .subscribe(
+                       usuario  => this.usuarios = usuario,
+                       error =>  this.errorMessage = <any>error);
+	}
+	
+	onSaved (u: Usr)
+	{
+		this.actualizarUsuario(u);
 	}
 
 	ngOnInit() {

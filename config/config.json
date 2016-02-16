@@ -3,21 +3,21 @@
     "username": "gctadmin",
     "password": "GcT3ch",
     "database": "retencion",
-    "host": "127.0.0.1",
+    "host": "192.168.0.50",
     "dialect": "postgres"
   },
   "test": {
     "username": "gctadmin",
     "password": "GcT3ch",
     "database": "retencion",
-    "host": "127.0.0.1",
+    "host": "192.168.0.50",
     "dialect": "postgres"
   },
   "production": {
     "username": "gctadmin",
     "password": "GcT3ch",
     "database": "retencion",
-    "host": "127.0.0.1",
+    "host": "192.168.0.50",
     "dialect": "postgres"
   }
 }

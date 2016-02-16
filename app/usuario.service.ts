@@ -9,7 +9,7 @@ import 'rxjs/Rx';
 export class UsuarioService {
   constructor (private http: Http) {}
 
-  private _usuarioUrl = 'http://192.168.0.50/users/list';
+  private _usuarioUrl = 'http://localhost/users/list';
 
   getUsers () {
 	var observador = this.http.get(this._usuarioUrl)
@@ -25,7 +25,7 @@ export class UsuarioService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    var url = 'http://192.168.0.50/users/add/'+name;
+    var url = 'http://localhost/users/add/'+name;
     /*return this.http.get(url, body, options)
                     .map(res =>  <Usr> res.json().usuario)
                     .catch(this.handleError)*/
@@ -41,7 +41,19 @@ export class UsuarioService {
 	    let headers = new Headers({ 'Content-Type': 'application/json' });
 	    let options = new RequestOptions({ headers: headers });
 
-    	    var url = 'http://192.168.0.50/users/delete/'+usuario.id;
+    	    var url = 'http://localhost/users/delete/'+usuario.id;
+	    return this.http.get(url)
+                    .map(res =>  <Usr> res.json().usuario)
+                    .catch(this.handleError)
+   }
+   
+   updUser(usuario: Usr) : Observable<Usr> {
+
+	    let body = JSON.stringify({ usuario });
+	    let headers = new Headers({ 'Content-Type': 'application/json' });
+	    let options = new RequestOptions({ headers: headers });
+
+    	    var url = 'http://localhost/users/update/'+usuario.id+'/'+usuario.username;
 	    return this.http.get(url)
                     .map(res =>  <Usr> res.json().usuario)
                     .catch(this.handleError)

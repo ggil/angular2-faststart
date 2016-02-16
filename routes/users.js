@@ -45,5 +45,18 @@ router.get('/delete/:username', function(req, res) {
 	  });
 });
 
+router.get('/update/:id/:username', function(req, res) {
+  models.User.findById(req.params.id).then(function(usuario) {
+	  if (usuario) { // if the record exists in the db
+    		usuario.updateAttributes({
+      			username: req.params.username
+    		}).then(function() {
+						models.User.findAll().then(function(users) {
+				    	res.send(JSON.stringify({usuario: users}));
+					});
+			});
+	  }
+  });
+});
 
 module.exports = router;

@@ -11,6 +11,9 @@ export class UsuarioService {
 
   private _usuarioUrl = 'http://localhost/users/list';
 
+	/* AHERRERA: 
+		Call to a restful web service to get the list of users using http get and suscribe method
+	*/
   getUsers () {
 	var observador = this.http.get(this._usuarioUrl)
                     .map(res => <Usr[]> res.json().usuarios) //<Usr[]> res.json().data
@@ -19,6 +22,12 @@ export class UsuarioService {
 	return observador;
   }
 
+	/*
+		AHERRERA:
+		call to a restful web service to add user to the database
+		its uses GET method for example purposes
+		it must be changed to POST method
+	*/
   addUser (name: string) : Observable<Usr>  {
 
     let body = JSON.stringify({ name });
@@ -34,7 +43,12 @@ export class UsuarioService {
                     .catch(this.handleError)
   }
 
-
+	/*
+		AHERRERA:
+		call to a restful web service to delete a user from the database
+		its uses GET method for example purposes
+		it must be changed to DELETE method
+	*/
    delUser(usuario: Usr) : Observable<Usr> {
 
 	    let body = JSON.stringify({ usuario });
@@ -47,6 +61,12 @@ export class UsuarioService {
                     .catch(this.handleError)
    }
    
+   /*
+		AHERRERA:
+		call to a restful web service to update user data on the database
+		its uses GET method for example purposes
+		it must be changed to PUT method
+	*/
    updUser(usuario: Usr) : Observable<Usr> {
 
 	    let body = JSON.stringify({ usuario });

@@ -13,7 +13,12 @@ interface Empresa {
 	rif: string;
 	nombre: string;
 }
-
+/*
+ AHERRERA:
+ Componente raiz
+ Contiene el componente inmerso <usuario>
+ 
+*/
 @Component({
     selector: 'my-app',
     template: `<!--<h1>{{titulo}}</h1>-->
@@ -50,10 +55,7 @@ interface Empresa {
 	directives: [UsuarioComponent],
 	providers: [
 		HTTP_PROVIDERS,
-		UsuarioService
-		// in-memory web api providers
-//		provide(XHRBackend, { useClass: InMemoryBackendService }), // in-mem server
-//		provide(SEED_DATA,  { useClass: UsuarioData }) // in-mem server data
+		UsuarioService //Proveedor de servicios de usuario
   ]
 })
 
@@ -71,6 +73,10 @@ export class AppComponent implements AfterViewChecked {
   }
 }
 
+/*
+AHERRERA:
+Array to simulate data
+*/
 var EMPRESAS: Empresa[] = [
 	{ "rif": "J-1-0", "nombre":"Nortus, C. A." },
 	{ "rif": "J-29840695-0", "nombre":"Gc Tech, C. A." },

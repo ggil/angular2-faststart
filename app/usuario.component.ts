@@ -54,6 +54,10 @@ export class UsuarioComponent implements AfterViewChecked, OnInit {
 	usuarios: Usr[];
 	errorMessage: string;
 
+	/*
+	AHERRERA:
+	class constructor has injected the UsuarioService as parameter
+	*/
 	constructor (private _usuarioService: UsuarioService) {}
 
 	ngAfterViewChecked() {
@@ -61,6 +65,10 @@ export class UsuarioComponent implements AfterViewChecked, OnInit {
 		//console.log('AfterViewChecked: ');// + this.getMessage(this.viewChild));
 	}
 
+	/*
+	AHERRERA:
+	Method to get the list of users
+	*/
 	loadData()
 	{
 		var tmps = this._usuarioService.getUsers();
@@ -69,6 +77,11 @@ export class UsuarioComponent implements AfterViewChecked, OnInit {
                        error =>  this.errorMessage = <any>error);
 	}
 
+	/*
+	AHERRERA
+	Method to create a new user calling the usuario service component
+	Requires a string parameter to define the name of the user
+	*/
 	AgregarUsuario(nuevoUsuario:string)
 	{
 		if (!nuevoUsuario)
@@ -82,6 +95,12 @@ export class UsuarioComponent implements AfterViewChecked, OnInit {
                        error =>  this.errorMessage = <any>error);
 	}
 
+	/*
+	AHERRERA:
+	Method to delete a user.
+	Requires a parameter of type Usr.
+	it uses the UsuarioService Component
+	*/
 	eliminarUsuario(usuario:Usr)
 	{
 		if (!usuario)
@@ -95,6 +114,11 @@ export class UsuarioComponent implements AfterViewChecked, OnInit {
                        error =>  this.errorMessage = <any>error);
 	}
 	
+	/*
+	AHERRERA:
+	Method to call when needs to update an user
+	Requires a parameter of type Usr
+	*/
 	actualizarUsuario(usuario:Usr)
 	{
 		if (!usuario)
@@ -108,11 +132,21 @@ export class UsuarioComponent implements AfterViewChecked, OnInit {
                        error =>  this.errorMessage = <any>error);
 	}
 	
+	/*
+	AHERRERA:
+	Method to get called when the event saved is raised
+	receives a parameter of type Usr to get data passed to the component
+	*/
 	onSaved (u: Usr)
 	{
 		this.actualizarUsuario(u);
 	}
 
+	/*
+	AHERRERA:
+	Method called when the component start
+	the class must implement OnInit interface
+	*/
 	ngOnInit() {
 		this.loadData();
 	}

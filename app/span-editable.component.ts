@@ -15,18 +15,40 @@ import {Usr} from './usuario';
     `,
 	inputs: ['usuario_e']
 })
+
 export class SpanEditableComponent implements OnInit, AfterViewChecked {
 	
+	/*
+	AHERRERA:
+	Var to control the status of the component and determine what part of the code (DOM) should be used
+	*/
 	show: bool = true;
+	
+	/*
+	AHERRERA:
+	Defines an input var of type Usr
+	*/
 	@Input() usuario_e: Usr;
 
+	/*
+	AHERRERA:
+	Defines an even called saved
+	*/
 	@Output() saved = new EventEmitter();
 
+	/*
+	AHERRERA:
+	Method to switch the dom section of the component
+	*/
 	EditarValor()
 	{
 		this.show = !this.show;
 	}
 
+	/*
+	AHERRERA:
+	Method attached to the event blur on DOM to be called when the user leaves the textbox
+	*/
 	onFocusOut(valor: string)
 	{
 		this.usuario_e.username = valor;

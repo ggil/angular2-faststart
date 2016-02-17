@@ -22,16 +22,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+/* AHERRERA: Route to statics folders/files */
 app.use("/css", express.static(__dirname + '/css'));
 app.use("/app", express.static(__dirname + '/app'));
 app.use("/js", express.static(__dirname + '/js'));
+/* AHERRERA: list of routes to get angular2 Work */
 app.use('/node_modules/angular2-rest/', express.static(__dirname + '/node_modules/angular2-rest/'));
 app.use('/node_modules/angular2/bundles/',express.static(path.join(__dirname, '/node_modules/angular2/bundles/')));
 app.use('/node_modules/rxjs/bundles/',express.static(path.join(__dirname, '/node_modules/rxjs/bundles/')));
 app.use('/node_modules/systemjs/dist/',express.static(path.join(__dirname, '/node_modules/systemjs/dist/')));
 app.use('/node_modules/es6-shim/',express.static(path.join(__dirname, '/node_modules/es6-shim/')));
 //app.use(serveStatic('/node_modules/angular2/bundles/'));
-
 app.use('/', routes);
 app.use('/users', users);
 
